@@ -1,6 +1,8 @@
 from math import sin, cos
 from pylx16a.lx16a import *
 import time
+import numpy as np
+import matplotlib.pyplot as plt
 
 # Use COM6 port
 LX16A.initialize("COM6", 0.1)
@@ -82,8 +84,10 @@ except ServoTimeoutError as e:
 
 print("Initialized 8 servos")
 
+angles = {i: [] for i in range(1, 9)}
+
 #################################################### FUNCTIONS ##########################################################################################
-def update_postion(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8):
+def update_position(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8):
     position_1 = servo1.get_physical_angle()
     position_2 = servo2.get_physical_angle()
     position_3 = servo3.get_physical_angle()
@@ -92,18 +96,31 @@ def update_postion(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo
     position_6 = servo6.get_physical_angle()
     position_7 = servo7.get_physical_angle()
     position_8 = servo8.get_physical_angle()
+    angles[1].append(position_1)
+    angles[2].append(position_2)
+    angles[3].append(position_3)
+    angles[4].append(position_4)
+    angles[5].append(position_5)
+    angles[6].append(position_6)
+    angles[7].append(position_7)
+    angles[8].append(position_8)
     return position_1, position_2, position_3, position_4, position_5, position_6, position_7, position_8
 
 def move_servo(desired_angle, servo, id, current_position, move_time):
     try:
         angle_range = (desired_angle - current_position)
         t = 0
+        start_time = time.time()
+        
         while t < move_time:
-            interpolated_angle = current_position + (angle_range * t / move_time)
+            # Calculate the current time elapsed
+            current_time = time.time() - start_time
+            # Use a sine wave for smooth interpolation
+            interpolated_angle = current_position + (angle_range / 2) * (1 - np.cos(np.pi * current_time / move_time))
             servo.move(interpolated_angle)
             time.sleep(0.05)
-            t += 0.1
-            update_postion(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8)
+            t = current_time
+            update_position(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8)
 
         print(f"Moved servo {id} to {desired_angle} degrees in {move_time} seconds")
         time.sleep(0.25)
@@ -115,21 +132,36 @@ def move_2_servos(top_angle, bottom_angle, top_servo, bottom_servo, top_id, bott
     try:
         top_angle_range = (top_angle - top_position)
         bottom_angle_range = (bottom_angle - bottom_position)
-        t = 0
-        while t < move_time:
-            top_interpolated_angle = top_position + (top_angle_range * t / move_time)
-            bottom_interpolated_angle = bottom_position + (bottom_angle_range * t / move_time)
+        start_time = time.time()
+        
+        while True:
+            # Calculate the current time elapsed
+            current_time = time.time() - start_time
+            if current_time > move_time:
+                break
+            # Use a sine wave for smooth interpolation
+            top_interpolated_angle = top_position + (top_angle_range / 2) * (1 - np.cos(np.pi * current_time / move_time))
+            bottom_interpolated_angle = bottom_position + (bottom_angle_range / 2) * (1 - np.cos(np.pi * current_time / move_time))
             top_servo.move(top_interpolated_angle)
             bottom_servo.move(bottom_interpolated_angle)
             time.sleep(0.05)
-            t += 0.1
-            update_postion(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8)
+            update_position(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8)
 
         print(f"Moved servos {top_id} and {bottom_id} to {top_angle} and {bottom_angle} degrees in {move_time} seconds")
         time.sleep(0.25)
 
     except ServoTimeoutError as e:
         print(f"Servo {e.id_} is not responding. Exiting...")
+
+def plot_angles():
+    plt.figure(figsize=(12, 6))
+    for i in range(1, 9):
+        plt.plot(angles[i], label=f'Servo {i}')
+    plt.title('Servo Angles Over Time')
+    plt.xlabel('Time (arbitrary units)')
+    plt.ylabel('Angle (degrees)')
+    plt.legend()
+    plt.show()
 
 
 #################################################### MOTION ##########################################################################################
@@ -155,3 +187,5 @@ for i in range(1, 6):
     move_servo(str8_leg_4+70, servo4, 4, position_4, 0.25)
     move_servo(str8_leg_3-40, servo3, 3, position_3, 0.25)
     move_servo(str8_leg_4+50, servo4, 4, position_4, 0.25)
+
+plot_angles()

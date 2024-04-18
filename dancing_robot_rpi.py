@@ -123,10 +123,10 @@ def leg_lifts():
 
 def twerk():
     move_2_servos_with_offsets(1, 4, -70, 70, straight_positions, positions, 1)
-    move_2_servos_with_offsets(5, 7, -20, 20, straight_positions, positions, 1)
-    move_2_servos_with_offsets(5, 7, -40, 40, straight_positions, positions, 1)
-    move_2_servos_with_offsets(5, 7, -20, 20, straight_positions, positions, 1)
-    move_2_servos_with_offsets(5, 7, -40, 40, straight_positions, positions, 1)
+    move_2_servos_with_offsets(5, 7, -10, 10, straight_positions, positions, 0.5)
+    move_2_servos_with_offsets(5, 7, -40, 40, straight_positions, positions, 0.5)
+    move_2_servos_with_offsets(5, 7, -10, 10, straight_positions, positions, 0.5)
+    move_2_servos_with_offsets(5, 7, -40, 40, straight_positions, positions, 0.5)
 
 
 ##### MAIN METHOD #####

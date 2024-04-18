@@ -145,6 +145,9 @@ print("Initialized 8 servos")
 home_position()
 
 # Dancing Cycle!!!
+swaying()
+leg_lifts()
+
 for i in range(1, 20):
     swaying()
     leg_lifts()

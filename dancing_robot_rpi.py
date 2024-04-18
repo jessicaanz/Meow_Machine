@@ -1,11 +1,11 @@
-import math
-from pylx16a.lx16a import *
+import math #no
+from from lx16a import *
 import time
 import numpy as np
 import matplotlib.pyplot as plt
 
 # Use COM6 port
-LX16A.initialize("COM6", 0.1)
+LX16A.initialize("/dev/ttyUSB0", 0.1)
 
 
 ##### SETUP #####
@@ -13,7 +13,7 @@ servos = []
 positions = np.zeros(8)
 angles_recorded = {new_servo_id: [] for new_servo_id in range(1, 9)}  # Dictionary to store angle history
 servo_limits = [(0, 185), (0, 190), (30, 230), (0, 180), (10, 215), (25, 225), (5, 220), (20, 225)]
-straight_positions = [91, 97, 133, 85, 117, 80, 121, 124]
+straight_positions = [90, 45, 125, 85, 109, 82, 122, 127]
 
 
 ##### HELPER FUNCTIONS #####
@@ -108,27 +108,18 @@ def home_position():
     move_2_servos_with_offsets(7, 8, 40, -30, straight_positions, positions, 1)
     print("Moved to home position")
 
-def leg_1_gait():
-    move_2_servos_with_offsets(1, 2, 21, 29, straight_positions, positions, 2)
-    move_2_servos_with_offsets(1, 2, 35, 50, straight_positions, positions, 0.5)
-    move_2_servos_with_offsets(1, 2, -75, 90, straight_positions, positions, 1)
-    move_2_servos_with_offsets(1, 2, -50, 40, straight_positions, positions, 0.5)
+def swaying():
+    move_2_servos_with_offsets(1, 4, -70, 70, straight_positions, positions, 1)
+    move_2_servos_with_offsets(1, 4, -50, 50, straight_positions, positions, 1)
+    move_2_servos_with_offsets(5, 7, -20, 20, straight_positions, positions, 1)
+    move_2_servos_with_offsets(5, 7, -40, 40, straight_positions, positions, 1)
 
-def leg_2_gait():
-    move_2_servos_with_offsets(4, 3, -21, -29, straight_positions, positions, 2)
-    move_2_servos_with_offsets(4, 3, -35, -50, straight_positions, positions, 0.5)
-    move_2_servos_with_offsets(4, 3, 75, -90, straight_positions, positions, 1)
-    move_2_servos_with_offsets(4, 3, 50, -40, straight_positions, positions, 0.5)
 
-def leg_3_gait():
-    move_2_servos_with_offsets(5, 6, 47, -43, straight_positions, positions, 0.75)
-    move_2_servos_with_offsets(5, 6, -7, -5, straight_positions, positions, 0.75)
-    move_2_servos_with_offsets(5, 6, -40, 30, straight_positions, positions, 0.5)
-
-def leg_4_gait():
-    move_2_servos_with_offsets(7, 8, -47, 43, straight_positions, positions, 0.75)
-    move_2_servos_with_offsets(7, 8, 7, 5, straight_positions, positions, 0.75)
-    move_2_servos_with_offsets(7, 8, 40, -30, straight_positions, positions, 0.5)
+def leg_lifts():
+    move_2_servos_with_offsets(1, 2, -60, -3, straight_positions, positions, 1)
+    move_2_servos_with_offsets(1, 2, -50, 40, straight_positions, positions, 1)
+    move_2_servos_with_offsets(4, 3, 60, -3, straight_positions, positions, 1)
+    move_2_servos_with_offsets(4, 3, 50, -40, straight_positions, positions, 1)
 
 
 ##### MAIN METHOD #####
@@ -143,12 +134,10 @@ print("Initialized 8 servos")
 # Move to home positions
 home_position()
 
-# Walking Cycle!!!
-for i in range(1, 4):
-    leg_1_gait()
-    leg_3_gait()
-    leg_2_gait()
-    leg_4_gait()
+# Dancing Cycle!!!
+for i in range(1, 20):
+    swaying()
+    leg_lifts()
 
 # Plot Angles over time
 #plot_motor_angles(angles_recorded)

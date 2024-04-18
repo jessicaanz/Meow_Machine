@@ -129,7 +129,7 @@ def twerk():
     move_2_servos_with_offsets(5, 7, -10, 10, straight_positions, positions, 0.5)
     move_2_servos_with_offsets(5, 7, -40, 40, straight_positions, positions, 0.5)
     move_2_servos_with_offsets(1, 4, -50, 50, straight_positions, positions, 1)
-    move_2_servos_with_offsets(2, 3, 40, 40, straight_positions, positions, 1)
+    move_2_servos_with_offsets(2, 3, -40, 40, straight_positions, positions, 1)
 
 
 ##### MAIN METHOD #####

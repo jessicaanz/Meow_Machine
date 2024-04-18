@@ -149,8 +149,6 @@ swaying()
 leg_lifts()
 
 for i in range(1, 20):
-    swaying()
-    leg_lifts()
     twerk()
 
 # Plot Angles over time

@@ -116,7 +116,7 @@ def swaying():
 
 
 def leg_lifts():
-    move_2_servos_with_offsets(1, 2, -60, -3, straight_positions, positions, 1)
+    move_2_servos_with_offsets(1, 2, -55, -10, straight_positions, positions, 1)
     move_2_servos_with_offsets(1, 2, -50, 40, straight_positions, positions, 1)
     move_2_servos_with_offsets(4, 3, 60, -3, straight_positions, positions, 1)
     move_2_servos_with_offsets(4, 3, 50, -40, straight_positions, positions, 1)

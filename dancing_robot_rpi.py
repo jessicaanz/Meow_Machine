@@ -121,6 +121,13 @@ def leg_lifts():
     move_2_servos_with_offsets(4, 3, 60, -3, straight_positions, positions, 1)
     move_2_servos_with_offsets(4, 3, 50, -40, straight_positions, positions, 1)
 
+def twerk():
+    move_2_servos_with_offsets(1, 4, -70, 70, straight_positions, positions, 1)
+    move_2_servos_with_offsets(5, 7, -20, 20, straight_positions, positions, 1)
+    move_2_servos_with_offsets(5, 7, -40, 40, straight_positions, positions, 1)
+    move_2_servos_with_offsets(5, 7, -20, 20, straight_positions, positions, 1)
+    move_2_servos_with_offsets(5, 7, -40, 40, straight_positions, positions, 1)
+
 
 ##### MAIN METHOD #####
 
@@ -138,6 +145,7 @@ home_position()
 for i in range(1, 20):
     swaying()
     leg_lifts()
+    twerk()
 
 # Plot Angles over time
 #plot_motor_angles(angles_recorded)

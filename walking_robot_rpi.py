@@ -144,11 +144,11 @@ print("Initialized 8 servos")
 home_position()
 
 # Walking Cycle!!!
-for i in range(1, 50):
+for i in range(1, 100):
     leg_1_gait()
-    leg_3_gait()
+    # leg_3_gait()
     leg_2_gait()
-    leg_4_gait()
+    # leg_4_gait()
 
 # Plot Angles over time
 #plot_motor_angles(angles_recorded)

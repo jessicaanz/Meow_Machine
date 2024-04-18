@@ -1,5 +1,5 @@
 import math
-from from lx16a import *
+from lx16a import *
 import time
 import numpy as np
 import matplotlib.pyplot as plt

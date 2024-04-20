@@ -1,4 +1,4 @@
-import math #no
+import math
 from pylx16a.lx16a import *
 import time
 import numpy as np
@@ -45,20 +45,6 @@ def move_servo(servo_id, desired_angle, positions, move_time):
             t += 0.1
             update_positions(servos, positions)
         print(f"Moved servo {servo_id} to {desired_angle} degrees in {move_time} seconds")
-    except ServoTimeoutError as e:
-        print(f"Servo {e.id_} is not responding. Exiting...")
-
-def move_servo_sin(servo_id, amplitude, frequency, phase_shift, vertical_shift, positions, move_time):
-    try:
-        t = 0
-        while t < move_time:
-            # Create a sinusoidal wave between the start and end angles with period of move_time
-            sinusoidal_angle = amplitude * np.sin((frequency*t) + phase_shift) + vertical_shift
-            servos[servo_id-1].move(sinusoidal_angle)
-            time.sleep(0.05)
-            t += 0.1
-            update_positions(servos, positions)
-        print(f"Moved servo {servo_id} degrees in {move_time} seconds")
     except ServoTimeoutError as e:
         print(f"Servo {e.id_} is not responding. Exiting...")
 

@@ -1,8 +1,6 @@
-import math #no
+import math
 from lx16a import *
 import time
-import numpy as np
-import matplotlib.pyplot as plt
 
 # Use COM6 port
 LX16A.initialize("/dev/ttyUSB0", 0.1)
@@ -10,7 +8,7 @@ LX16A.initialize("/dev/ttyUSB0", 0.1)
 
 ##### SETUP #####
 servos = []
-positions = np.zeros(8)
+positions = [0, 0, 0, 0, 0, 0, 0, 0]
 angles_recorded = {new_servo_id: [] for new_servo_id in range(1, 9)}  # Dictionary to store angle history
 servo_limits = [(0, 185), (0, 190), (30, 230), (0, 180), (10, 215), (25, 225), (5, 220), (20, 225)]
 straight_positions = [90, 45, 125, 85, 109, 82, 122, 127]
@@ -48,20 +46,6 @@ def move_servo(servo_id, desired_angle, positions, move_time):
     except ServoTimeoutError as e:
         print(f"Servo {e.id_} is not responding. Exiting...")
 
-def move_servo_sin(servo_id, amplitude, frequency, phase_shift, vertical_shift, positions, move_time):
-    try:
-        t = 0
-        while t < move_time:
-            # Create a sinusoidal wave between the start and end angles with period of move_time
-            sinusoidal_angle = amplitude * np.sin((frequency*t) + phase_shift) + vertical_shift
-            servos[servo_id-1].move(sinusoidal_angle)
-            time.sleep(0.05)
-            t += 0.1
-            update_positions(servos, positions)
-        print(f"Moved servo {servo_id} degrees in {move_time} seconds")
-    except ServoTimeoutError as e:
-        print(f"Servo {e.id_} is not responding. Exiting...")
-
 def move_2_servos(servo_id_1, servo_id_2, desired_angle_1, desired_angle_2, positions, move_time):
     try:
         start_angle_1 = positions[servo_id_1-1]
@@ -89,17 +73,6 @@ def move_servo_with_offset(servo_id, desired_angle, straight_positions, position
 def move_2_servos_with_offsets(servo_id_1, servo_id_2, desired_angle_1, desired_angle_2, straight_positions, positions, move_time):
     offset_1 = straight_positions[servo_id_1-1]
     offset_2 = straight_positions[servo_id_2-1]
-    move_2_servos(servo_id_1, servo_id_2, desired_angle_1+offset_1, desired_angle_2+offset_2, positions, move_time)
-
-def plot_motor_angles(angles_recorded):
-    plt.figure(figsize=(10, 8))
-    for servo_id, angles in angles_recorded.items():
-        plt.plot(angles, label=f'Servo {servo_id}')
-    plt.xlabel('Time Step')
-    plt.ylabel('Servo Angle')
-    plt.title('Motor Angles Over Time')
-    plt.legend()
-    plt.show()
 
 def home_position():
     move_2_servos_with_offsets(1, 2, -50, 40, straight_positions, positions, 1)
@@ -150,6 +123,3 @@ leg_lifts()
 
 for i in range(1, 20):
     twerk()
-
-# Plot Angles over time
-#plot_motor_angles(angles_recorded)

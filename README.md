@@ -4,19 +4,34 @@ Instructions and Code for the Meow Machine Robot for the Robot Studio course at 
 ## Usage Instructions
 
 ### Accessing Raspberry Pi IP Address
-Open the windows command prompt and run:
+Boot up the Raspberry pi while connected to a monitor and run
 
 ```
-arp -a | findstr cd-a6-32
+hostname -I
 ```
 
-This will output the IP address and say if it is dynamic or static
+This will output the IP address
 
 ### SSH Into the Raspberry Pi
 From the command prompt run:
 
 ```
-ssh ubuntu@"IP Address"
+ssh jessica@"IP Address"
 ```
 
-The default password is "Ubuntu", input that when prompted
+Input the password when prompted
+
+### Creating a Virtual Python Enviroment
+Run
+```
+python3 -m venv .venv  
+```
+```
+source .venv/bin/activate    
+```
+```
+sudo usermod -a -G tty jessica
+```
+```
+sudo usermod -a -G dialout jessica
+```

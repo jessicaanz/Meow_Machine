@@ -83,31 +83,30 @@ def home_position():
     print("Moved to home position")
 
 def leg_1_gait():
-    move_2_servos_with_offsets(1, 2, 50.4, -49.2, straight_positions, positions, 1)
-    move_2_servos_with_offsets(1, 2, 38, 85, straight_positions, positions, 1)
-    move_2_servos_with_offsets(1, 2, -80, 85, straight_positions, positions, 0.5)
-    move_2_servos_with_offsets(1, 2, -50, 40, straight_positions, positions, 0.5)
-
+    move_2_servos_with_offsets(1, 2, 50.4, -49.2, straight_positions, positions, 1.5)
+    move_2_servos_with_offsets(1, 2, 38, 85, straight_positions, positions, 1.5)
+    move_2_servos_with_offsets(1, 2, -80, 85, straight_positions, positions, 1)
+    move_2_servos_with_offsets(1, 2, -50, 40, straight_positions, positions, 1)
 
 def leg_2_gait():
-    move_2_servos_with_offsets(4, 3, -50.4, 49.2, straight_positions, positions, 1)
-    move_2_servos_with_offsets(4, 3, -38, -85, straight_positions, positions, 1)
-    move_2_servos_with_offsets(4, 3, 80, -85, straight_positions, positions, 0.5)
-    move_2_servos_with_offsets(4, 3, 50, -40, straight_positions, positions, 0.5)
+    move_2_servos_with_offsets(4, 3, -50.4, 49.2, straight_positions, positions, 1.5)
+    move_2_servos_with_offsets(4, 3, -38, -85, straight_positions, positions, 1.5)
+    move_2_servos_with_offsets(4, 3, 80, -85, straight_positions, positions, 1)
+    move_2_servos_with_offsets(4, 3, 50, -40, straight_positions, positions, 1)
 
 def leg_3_forward():
-    move_2_servos_with_offsets(5, 6, 47, -43, straight_positions, positions, 0.75)
+    move_2_servos_with_offsets(5, 6, 47, -43, straight_positions, positions, 1)
 
 def leg_3_backward():
-    move_2_servos_with_offsets(5, 6, -7, -5, straight_positions, positions, 0.75)
-    move_2_servos_with_offsets(5, 6, -40, 30, straight_positions, positions, 0.5)
+    move_2_servos_with_offsets(5, 6, -7, -5, straight_positions, positions, 1)
+    move_2_servos_with_offsets(5, 6, -40, 30, straight_positions, positions, 0.75)
 
 def leg_4_forward():
-    move_2_servos_with_offsets(7, 8, -47, 43, straight_positions, positions, 0.75)
+    move_2_servos_with_offsets(7, 8, -47, 43, straight_positions, positions, 1)
 
 def leg_4_backward():
-    move_2_servos_with_offsets(7, 8, 7, 5, straight_positions, positions, 0.75)
-    move_2_servos_with_offsets(7, 8, 40, -30, straight_positions, positions, 0.5)
+    move_2_servos_with_offsets(7, 8, 7, 5, straight_positions, positions, 1)
+    move_2_servos_with_offsets(7, 8, 40, -30, straight_positions, positions, 0.75)
 
 
 ##### MAIN METHOD #####

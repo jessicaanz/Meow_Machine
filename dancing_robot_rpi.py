@@ -11,7 +11,7 @@ servos = []
 positions = [0, 0, 0, 0, 0, 0, 0, 0]
 angles_recorded = {new_servo_id: [] for new_servo_id in range(1, 9)}  # Dictionary to store angle history
 servo_limits = [(0, 185), (0, 190), (30, 230), (0, 180), (10, 215), (25, 225), (5, 220), (20, 225)]
-straight_positions = [90, 45, 125, 85, 109, 82, 122, 127]
+straight_positions = [90, 100, 129, 85, 113, 73, 119, 126]
 
 
 ##### HELPER FUNCTIONS #####

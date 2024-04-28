@@ -73,6 +73,7 @@ def move_servo_with_offset(servo_id, desired_angle, straight_positions, position
 def move_2_servos_with_offsets(servo_id_1, servo_id_2, desired_angle_1, desired_angle_2, straight_positions, positions, move_time):
     offset_1 = straight_positions[servo_id_1-1]
     offset_2 = straight_positions[servo_id_2-1]
+    move_2_servos(servo_id_1, servo_id_2, desired_angle_1+offset_1, desired_angle_2+offset_2, positions, move_time)
 
 def home_position():
     move_2_servos_with_offsets(1, 2, -50, 40, straight_positions, positions, 1)

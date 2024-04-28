@@ -94,18 +94,71 @@ def home_position():
     move_2_servos_with_offsets(7, 8, 40, -30, straight_positions, positions, 1)
     print("Moved to home position")
 
-def swaying():
+def leg_1_lift():
+    move_2_servos_with_offsets(7, 8, -47, 43, straight_positions, positions, 1) # leg 4 forward
+    move_2_servos_with_offsets(1, 2, -77, -48.4, straight_positions, positions, 0.75) #waving!
+    move_2_servos_with_offsets(1, 2, -60, 48.4, straight_positions, positions, 0.75)
+    move_2_servos_with_offsets(1, 2, -77, -48.4, straight_positions, positions, 0.75) #waving!
+    move_2_servos_with_offsets(1, 2, -60, 48.4, straight_positions, positions, 0.75)
+    move_2_servos_with_offsets(1, 2, -50, 40, straight_positions, positions, 0.75) # return leg 1 to home
+    move_2_servos_with_offsets(7, 8, 40, -30, straight_positions, positions, 0.75) # leg 4 back
+
+def leg_2_lift():
+    move_2_servos_with_offsets(5, 6, 47, -43, straight_positions, positions, 1) # leg 3 forward
+    move_2_servos_with_offsets(4, 3, 77, 48.4, straight_positions, positions, 0.75) #waving!
+    move_2_servos_with_offsets(4, 3, 60, -48.4, straight_positions, positions, 0.75)
+    move_2_servos_with_offsets(4, 3, 77, 48.4, straight_positions, positions, 0.75) #waving!
+    move_2_servos_with_offsets(4, 3, 60, -48.4, straight_positions, positions, 0.75)
+    move_2_servos_with_offsets(4, 3, 50, -40, straight_positions, positions, 0.75) # return leg 2 to home
+    move_2_servos_with_offsets(5, 6, -40, 30, straight_positions, positions, 0.75) # leg 3 back
+
+def twerk():
     move_2_servos_with_offsets(1, 4, -70, 70, straight_positions, positions, 1)
-    move_2_servos_with_offsets(1, 4, -50, 50, straight_positions, positions, 1)
-    move_2_servos_with_offsets(5, 7, -20, 20, straight_positions, positions, 1)
+    move_2_servos_with_offsets(2, 3, -30, 30, straight_positions, positions, 1)
+    move_2_servos_with_offsets(5, 7, -10, 10, straight_positions, positions, 0.5) # twerk
+    move_2_servos_with_offsets(5, 7, -40, 40, straight_positions, positions, 0.5)
+    move_2_servos_with_offsets(5, 7, -10, 10, straight_positions, positions, 0.5)
+    move_2_servos_with_offsets(5, 7, -40, 40, straight_positions, positions, 0.5)
+    move_2_servos_with_offsets(5, 7, -10, 10, straight_positions, positions, 0.5) # twerk
+    move_2_servos_with_offsets(5, 7, -40, 40, straight_positions, positions, 0.5)
+    move_2_servos_with_offsets(5, 7, -10, 10, straight_positions, positions, 0.5)
+    move_2_servos_with_offsets(5, 7, -40, 40, straight_positions, positions, 0.5)
+    move_2_servos_with_offsets(1, 2, -50, 40, straight_positions, positions, 0.5) # return home
+    move_2_servos_with_offsets(4, 3, 50, -40, straight_positions, positions, 0.4)
+
+def drop_it():
+    move_2_servos_with_offsets(1, 4, -70, 70, straight_positions, positions, 1) # drop
+    move_2_servos_with_offsets(2, 3, -30, 30, straight_positions, positions, 1)
+    move_2_servos_with_offsets(5, 7, -80, 75, straight_positions, positions, 0.5)
+    move_2_servos_with_offsets(6, 8, 13, -10, straight_positions, positions, 0.5)
+
+    move_2_servos_with_offsets(2, 3, -80, 80, straight_positions, positions, 0.5) # kick legs
+    move_2_servos_with_offsets(2, 3, -30, 30, straight_positions, positions, 0.5)
+    move_2_servos_with_offsets(6, 8, -40, 40, straight_positions, positions, 0.5)
+    move_2_servos_with_offsets(6, 8, 13, -10, straight_positions, positions, 0.5)
+    move_2_servos_with_offsets(2, 6, -80, -40, straight_positions, positions, 0.5)
+    move_2_servos_with_offsets(2, 6, -30, 13, straight_positions, positions, 0.5)
+    move_2_servos_with_offsets(3, 8, 80, 40, straight_positions, positions, 0.5)
+    move_2_servos_with_offsets(3, 8, 30, -10, straight_positions, positions, 0.5)
+
+    move_2_servos_with_offsets(2, 3, -80, 80, straight_positions, positions, 0.5) # kick legs
+    move_2_servos_with_offsets(2, 3, -30, 30, straight_positions, positions, 0.5)
+    move_2_servos_with_offsets(6, 8, -40, 40, straight_positions, positions, 0.5)
+    move_2_servos_with_offsets(6, 8, 13, -10, straight_positions, positions, 0.5)
+    move_2_servos_with_offsets(2, 6, -80, -40, straight_positions, positions, 0.5)
+    move_2_servos_with_offsets(2, 6, -30, 13, straight_positions, positions, 0.5)
+    move_2_servos_with_offsets(3, 8, 80, 40, straight_positions, positions, 0.5)
+    move_2_servos_with_offsets(3, 8, 30, -10, straight_positions, positions, 0.5)
+
+    move_2_servos_with_offsets(2, 3, 40, -40, straight_positions, positions, 1) # back to home
     move_2_servos_with_offsets(5, 7, -40, 40, straight_positions, positions, 1)
+    move_2_servos_with_offsets(6, 8, 30, -30, straight_positions, positions, 1)
+    move_2_servos_with_offsets(1, 2, -50, 50, straight_positions, positions, 1)
 
-
-def leg_lifts():
-    move_2_servos_with_offsets(1, 2, -60, -3, straight_positions, positions, 1)
-    move_2_servos_with_offsets(1, 2, -50, 40, straight_positions, positions, 1)
-    move_2_servos_with_offsets(4, 3, 60, -3, straight_positions, positions, 1)
-    move_2_servos_with_offsets(4, 3, 50, -40, straight_positions, positions, 1)
+    move_2_servos_with_offsets(1, 2, -50, 40, straight_positions, positions, 0.25) # ensure reaches home
+    move_2_servos_with_offsets(4, 3, 50, -40, straight_positions, positions, 0.25)
+    move_2_servos_with_offsets(5, 6, -40, 30, straight_positions, positions, 0.25)
+    move_2_servos_with_offsets(7, 8, 40, -30, straight_positions, positions, 0.25)
 
 
 ##### MAIN METHOD #####
@@ -121,9 +174,11 @@ print("Initialized 8 servos")
 home_position()
 
 # Dancing Cycle!!!
-for i in range(1, 20):
-    swaying()
-    leg_lifts()
-
-# Plot Angles over time
-#plot_motor_angles(angles_recorded)
+drop_it()
+leg_1_lift()
+leg_2_lift()
+leg_1_lift()
+leg_2_lift()
+twerk()
+leg_1_lift()
+leg_2_lift()
